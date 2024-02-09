@@ -1,14 +1,17 @@
-import { useEffect } from "react";
-import QuotesList from "./QuotesList";
 
 
 
 
-function Quotes() {
+
+
+function Quotes({quote}) {
+    console.log(quote)
     return (
         <div>
             <h1> Quotes</h1>
-            <QuotesList />
+            <h2>{quote.text}</h2>
+            <h3>{quote.author}</h3>
+         
         </div>
     );
 }
