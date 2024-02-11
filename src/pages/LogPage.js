@@ -15,9 +15,8 @@ function LogPage() {
         <Form.Label>Meal</Form.Label>
         <FormControl type="meal"  />
       </FormGroup>
-
+      <Form.Label htmlFor="timeOfDay">Time of Day</Form.Label>
       <Form.Select aria-label="Default select example">
-      <option>Time of Day</option>
       <option value="1">Breakfeast</option>
       <option value="2">Lunch</option>
       <option value="3">Dinner</option>

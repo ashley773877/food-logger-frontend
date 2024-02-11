@@ -1,8 +1,3 @@
-
-// put a form in here to sign in or sign up 
-// have a components page for the sign up and render it here 
-
-
 import Form from 'react-bootstrap/Form';
 import SignUpForm from '../components/SignUp';
 import { useRef, useState } from "react";
@@ -48,7 +43,7 @@ function LoginPage() {
              {/* <button type="submit">Sign In</button> */}
              <Form.Group as={Row} className="mb-3">
         <Col sm={{ span: 10, offset: 2 }}>
-          <Button type="submit">Sign in</Button>
+          <Button  type="submit" style={{textAlign:"center"}}>Sign in</Button>
         </Col>
       </Form.Group>
 

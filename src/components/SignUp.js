@@ -11,10 +11,6 @@ function SignUpForm() {
     const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
    
-   
-   
-   
-   
     const handleSignUp = (e) => {
         e.preventDefault();
         console.log(emailInputRef.current.value);
@@ -31,19 +27,12 @@ function SignUpForm() {
         // the request here will be for the signup
       };
     
-    
-    
-    
-    
-    
-    
-    
-    
     return (
         <div>
             <h1> Sign Up </h1>
 
-            <fieldset>
+            <fieldset style={{border: '1px solid white', padding: '10px',
+            borderRadius: '8px', width:"500px", marginBottom: "10px" }}>
         <Form.Group as={Row} className="mb-3">
           <Form.Label as="legend" column sm={2}>
             Gender
