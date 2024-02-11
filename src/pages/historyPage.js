@@ -2,7 +2,7 @@
 
 
 
-function historyPage() {
+function HistoryPage() {
     return (
         <div>
             <h2> History</h2>
@@ -13,4 +13,4 @@ function historyPage() {
 }
 
 
-export default historyPage
+export default HistoryPage

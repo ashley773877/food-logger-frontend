@@ -1,16 +1,16 @@
 
 
-
-
-function logPage() {
+function LogPage() {
+   
     return (
         <div>
-            <h2> Logs </h2>
-           
+            <h2> Food Logs</h2>
+          
             
         </div>
     );
 }
 
 
-export default logPage
+export default LogPage
+

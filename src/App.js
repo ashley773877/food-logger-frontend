@@ -1,11 +1,12 @@
 //import {useEffect, useState} from 'react'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
-import NavBar from './components/NavBar';
+
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
-import historyPage from './pages/historyPage';
-import logPage from './pages/LogPage';
+import HistoryPage from './pages/historyPage.js';
+import Navigation from './components/NavBar';
+import LogPage from './pages/LogPage.js'; 
 
 function App() {
   return (
@@ -13,12 +14,12 @@ function App() {
      <div className="App">
    
       <h1> EverDiet</h1>
-      <NavBar />
+      <Navigation />
       <Routes>
       <Route path="/" element={<HomePage />}></Route>
       <Route path="/Login" element={<LoginPage />} />
-      <Route path="/History" element={<historyPage />} />
-      <Route path="/logs" element={<logPage />} />
+      <Route path="/History" element={<HistoryPage />} />
+      <Route path="/Logs" element={<LogPage />} />
      
     </Routes>
     
