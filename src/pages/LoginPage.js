@@ -1,9 +1,11 @@
-import Form from 'react-bootstrap/Form';
-import SignUpForm from '../components/SignUp';
 import { useRef, useState } from "react";
+import axios from 'axios'
+import SignUpForm from '../components/SignUp';
+
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
 
 function LoginPage() {
     const emailInputRef = useRef(null);
