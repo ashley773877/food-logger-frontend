@@ -1,4 +1,4 @@
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button, Row, } from 'react-bootstrap';
 
 
 
@@ -11,17 +11,21 @@ function LogPage() {
         
         <div>
         <Form>
+     <Row className="mb-3"> 
       <FormGroup controlId="meal">
         <Form.Label>Meal</Form.Label>
         <FormControl type="meal"  />
       </FormGroup>
+   
       <Form.Label htmlFor="timeOfDay">Time of Day</Form.Label>
+      
       <Form.Select aria-label="Default select example">
       <option value="1">Breakfeast</option>
       <option value="2">Lunch</option>
       <option value="3">Dinner</option>
       <option value="4">Snack</option>
     </Form.Select>
+    
 
       <FormGroup controlId="Calories">
         <Form.Label>Calories</Form.Label>
@@ -36,6 +40,7 @@ function LogPage() {
       <Button variant="primary" type="submit">
         Submit
       </Button>
+      </Row>
     </Form>
 
 

@@ -13,7 +13,7 @@ function App() {
   
      <div className="App">
 
-      <h1> EverDiet</h1>
+    
       <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
