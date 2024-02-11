@@ -1,7 +1,6 @@
 //import {useEffect, useState} from 'react'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
-
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
