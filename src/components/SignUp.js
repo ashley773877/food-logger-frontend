@@ -6,13 +6,28 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { useRef } from "react";
+import axios from 'axios'
 
 function SignUpForm() {
     const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
+    const usernameInputRef = useRef(null);
    
-    const handleSignUp = (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault();
+        try {
+          const response = await axios.post("http://localhost:4000/api/users/signup", {
+            username: usernameInputRef,
+            email: emailInputRef.current.value,
+            password: passwordInputRef.current.value,
+          });
+          console.log("Signup successful:", response.data);
+     
+    } catch (error) {
+      console.error("Signup failed:", error.message);
+    
+    }
+  };
         console.log(emailInputRef.current.value);
         console.log(passwordInputRef.current.value);
     
@@ -24,10 +39,7 @@ function SignUpForm() {
           passwordInputRef.current.focus();
           return;
         }
-        // the request here will be for the signup
-      };
-    
-    return (
+      return (
         <div>
             <h1> Sign Up </h1>
 
@@ -93,7 +105,7 @@ function SignUpForm() {
      
       </div>
     );
-}
+    }
 
 
 export default SignUpForm

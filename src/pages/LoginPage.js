@@ -12,8 +12,17 @@ function LoginPage() {
     const passwordInputRef = useRef(null);
     const [showSignIn, setShowSignIn] = useState(true);
   
-    const handleSignIn = (e) => {
+    const handleSignIn = async (e) => {
       e.preventDefault();
+// request to backend 
+try {
+  const response = await axios.post("http://localhost:4000/api/users/signin", {
+    email: emailInputRef.current.value,
+    password: passwordInputRef.current.value,
+  });
+  console.log(response.data);
+} catch (error) {
+  console.error(error);
       console.log(emailInputRef.current.value);
       console.log(passwordInputRef.current.value);
   
@@ -27,7 +36,7 @@ function LoginPage() {
       }
     };
   
-    return (
+return (
       <main>
        
         {showSignIn ? (
@@ -76,6 +85,7 @@ function LoginPage() {
       </main>
     );
   }
+}
   
   export default LoginPage;
   
