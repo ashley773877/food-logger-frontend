@@ -40,7 +40,7 @@ function SignUpForm() {
     
     return (
         <div>
-            <h3> Sign Up </h3>
+            <h1> Sign Up </h1>
 
             <fieldset>
         <Form.Group as={Row} className="mb-3">

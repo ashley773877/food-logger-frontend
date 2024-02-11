@@ -1,7 +1,7 @@
 
 // put a form in here to sign in or sign up 
 // have a components page for the sign up and render it here 
-import {Link} from 'react-router-dom'
+
 
 import Form from 'react-bootstrap/Form';
 import SignUpForm from '../components/SignUp';
@@ -29,8 +29,10 @@ function LoginPage() {
   
     return (
       <main>
+       
         {showSignIn ? (
           <div>
+            <h1> Sign In</h1>
             <Form onSubmit={handleSignIn}>
               <Form.Group className="mb-3" controlId="formGroupEmail">
                 <Form.Label>Email address</Form.Label>
@@ -44,7 +46,10 @@ function LoginPage() {
             </Form>
             <span>
               Don't have an account?{" "}
-              <span onClick={() => setShowSignIn(!showSignIn)}>Sign Up</span>
+              <span onClick={() => setShowSignIn(!showSignIn)}
+              style={{cursor: "pointer", textDecoration: "underline" }}
+              >
+                Sign Up</span>
             </span>
           </div>
         ) : (
@@ -52,7 +57,13 @@ function LoginPage() {
             <SignUpForm />
             <span>
               Already have an account?{" "}
-              <span onClick={() => setShowSignIn(!showSignIn)}>Sign In</span>
+              <span 
+              onClick={() => setShowSignIn(!showSignIn)}
+              style={{cursor: "pointer", textDecoration: "underline"}}
+              >
+                Sign In
+              </span>
+            
             </span>
           </div>
         )}
