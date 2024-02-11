@@ -8,21 +8,15 @@ function QuotesList() {
     const [quotes, setQuotes] = useState([])
   useEffect(() => {
     const fetchData = async() => {
-   
+  
      const res = await fetch('https://type.fit/api/quotes')
      const data = await res.json()
       console.log(data)
       setQuotes(data) 
-      const specificQuote = data.quote[4]; 
-
-      setQuotes(specificQuote);
-    } catch (error) {
-      console.error('Error fetching quote:', error);
-    }
-  }
-    }
+     }
+    
     fetchData()
-  },[])
+  }, []);
     return (
         <div>
             <h1>Quotes List</h1>
