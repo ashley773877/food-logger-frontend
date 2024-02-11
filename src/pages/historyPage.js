@@ -3,7 +3,16 @@ import { Form, Button, Table } from 'react-bootstrap';
 
 
 
+
+
+
 function HistoryPage() {
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [foodLogs, setFoodLogs] = useState([]);
+    
+    
+    
     return (
         <div>
         <h2>History</h2>
