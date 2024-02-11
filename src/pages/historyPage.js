@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Table } from 'react-bootstrap';
+import { Form, Button, Table, FormGroup, FormControl, } from 'react-bootstrap';
 
 
 
@@ -8,7 +8,6 @@ import { Form, Button, Table } from 'react-bootstrap';
 
 function HistoryPage() {
     const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
     const [foodLogs, setFoodLogs] = useState([]);
     
     const handleDateRangeSubmit = (e) => {
@@ -28,16 +27,12 @@ function HistoryPage() {
               onChange={(e) => setStartDate(e.target.value)}
             />
           </Form.Group>
+          <FormGroup controlId="date">
+        <Form.Label>Date</Form.Label>
+        <FormControl type="Date" placeholder="MM/DD/YYYY" />
+      </FormGroup>
   
-          <Form.Group className="mb-3">
-            <Form.Label>End Date</Form.Label>
-            <Form.Control
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </Form.Group>
-  
+         
           <Button variant="primary" type="submit">
             Get History
           </Button>
