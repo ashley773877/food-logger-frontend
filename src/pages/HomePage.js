@@ -1,11 +1,11 @@
-
+import QuotesList from "../components/QuotesList";
 
 
 
 function HomePage() {
     return (
         <div>
-            <h1> HomePage</h1>
+            <h2> HomePage</h2>
             <QuotesList />
             
         </div>
@@ -13,4 +13,4 @@ function HomePage() {
 }
 
 
-export default Quotes
+export default HomePage
