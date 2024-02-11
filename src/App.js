@@ -12,19 +12,19 @@ function App() {
   return (
   
      <div className="App">
-   
+
       <h1> EverDiet</h1>
       <Navigation />
       <Routes>
-      <Route path="/" element={<HomePage />}></Route>
-      <Route path="/Login" element={<LoginPage />} />
-      <Route path="/History" element={<HistoryPage />} />
-      <Route path="/Logs" element={<LogPage />} />
-     
-    </Routes>
-    
-     
-    </div>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/Login" element={<LoginPage />} />
+        <Route path="/History" element={<HistoryPage />} />
+        <Route path="/Logs" element={<LogPage />} />
+
+      </Routes>
+
+    </div> 
+   
   );
 }
 

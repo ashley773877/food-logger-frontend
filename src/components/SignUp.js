@@ -4,7 +4,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { useRef, useState } from "react";
+import Button from 'react-bootstrap/Button';
+import { useRef } from "react";
 
 function SignUpForm() {
     const emailInputRef = useRef(null);
@@ -93,7 +94,11 @@ function SignUpForm() {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
-        <button type="submit">Sign Up</button>
+        <Form.Group as={Row} className="mb-3">
+        <Col sm={{ span: 10, offset: 2 }}>
+          <Button type="submit">Sign in</Button>
+        </Col>
+      </Form.Group>
       
       </Form>
      

@@ -4,11 +4,15 @@ import QuotesList from "../components/QuotesList";
 
 function HomePage() {
     return (
-        <div>
+        <><div>
             <h2> HomePage</h2>
-            <QuotesList />
-            
+           
+
         </div>
+        
+            <footer>
+            <QuotesList />
+            </footer></>
     );
 }
 
