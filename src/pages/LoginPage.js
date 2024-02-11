@@ -12,20 +12,11 @@ function LoginPage() {
     const passwordInputRef = useRef(null);
     const [showSignIn, setShowSignIn] = useState(true);
   
-    const handleSignIn = async (e) => {
+    const handleSignIn =  (e) => {
       e.preventDefault();
-// request to backend 
-try {
-  const response = await axios.post("http://localhost:4000/api/users/signin", {
-    email: emailInputRef.current.value,
-    password: passwordInputRef.current.value,
-  });
-  console.log(response.data);
-} catch (error) {
-  console.error(error);
       console.log(emailInputRef.current.value);
       console.log(passwordInputRef.current.value);
-  
+
       if (emailInputRef.current.value === "") {
         emailInputRef.current.focus();
         return;
@@ -34,8 +25,21 @@ try {
         passwordInputRef.current.focus();
         return;
       }
-    };
-  
+    
+    axios
+    .post("http://localhost:4000/api/users/signin", {
+      email: emailInputRef.current.value,
+      password: passwordInputRef.current.value,
+    })
+    .then((response) => {
+      
+      console.log("Sign in successful:", response.data);
+    })
+    .catch((error) => {
+     
+      console.error("Sign in error:", error.message);
+    });
+};
 return (
       <main>
        
@@ -84,8 +88,8 @@ return (
         )}
       </main>
     );
+  
   }
-}
   
   export default LoginPage;
   

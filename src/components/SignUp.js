@@ -17,28 +17,16 @@ function SignUpForm() {
         e.preventDefault();
         try {
           const response = await axios.post("http://localhost:4000/api/users/signup", {
-            username: usernameInputRef,
+            username: usernameInputRef.current.value,
             email: emailInputRef.current.value,
             password: passwordInputRef.current.value,
           });
           console.log("Signup successful:", response.data);
-     
-    } catch (error) {
-      console.error("Signup failed:", error.message);
-    
-    }
-  };
-        console.log(emailInputRef.current.value);
-        console.log(passwordInputRef.current.value);
-    
-        if (emailInputRef.current.value === "") {
-          emailInputRef.current.focus();
-          return;
+        } catch (error) {
+          console.error("Signup failed:", error.message);
         }
-        if (passwordInputRef.current.value === "") {
-          passwordInputRef.current.focus();
-          return;
-        }
+      };
+      
       return (
         <div>
             <h1> Sign Up </h1>
