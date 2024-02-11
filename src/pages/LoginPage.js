@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 function LoginPage() {
     const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
-    const [showSignIn, setShowSignIn] = useState(false);
+    const [showSignIn, setShowSignIn] = useState(true);
   
     const handleSignIn = (e) => {
       e.preventDefault();

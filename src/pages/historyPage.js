@@ -11,8 +11,10 @@ function HistoryPage() {
     const [endDate, setEndDate] = useState('');
     const [foodLogs, setFoodLogs] = useState([]);
     
-    
-    
+    const handleDateRangeSubmit = (e) => {
+        e.preventDefault();
+
+        
     return (
         <div>
         <h2>History</h2>
@@ -65,6 +67,7 @@ function HistoryPage() {
         </Table>
       </div>
     );
+}
 }
 
 
