@@ -11,6 +11,7 @@ function LoginPage() {
     const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
     const [showSignIn, setShowSignIn] = useState(true);
+    const [signInError, setSignInError] = useState(null);
   
     const handleSignIn =  (e) => {
       e.preventDefault();
@@ -19,10 +20,13 @@ function LoginPage() {
 
       if (emailInputRef.current.value === "") {
         emailInputRef.current.focus();
+        signInError("Sign-in failed. Please check your credentials")
+        setSignInError("Email is required")
         return;
       }
       if (passwordInputRef.current.value === "") {
         passwordInputRef.current.focus();
+        setSignInError("Password is required");
         return;
       }
     
@@ -32,13 +36,16 @@ function LoginPage() {
       password: passwordInputRef.current.value,
     })
     .then((response) => {
-      
       console.log("Sign in successful:", response.data);
     })
     .catch((error) => {
      
       console.error("Sign in error:", error.message);
+      const errorMessage = error.response?.data?.message || "Password must be between 6-50 characters";
+      setSignInError(errorMessage);
+
     });
+    
 };
 return (
       <main>
@@ -49,11 +56,11 @@ return (
             <Form onSubmit={handleSignIn}>
               <Form.Group className="mb-3" controlId="formGroupEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="email" />
+                <Form.Control type="email" placeholder="email" ref={emailInputRef} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formGroupPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="Password" ref={passwordInputRef} />
               </Form.Group>
              {/* <button type="submit">Sign In</button> */}
              <Form.Group as={Row} className="mb-3">
