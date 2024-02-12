@@ -4,46 +4,80 @@ import axios from 'axios'
 
 
 
-function LogPage() {
+function LogPage({user}) {
   const[meal, setMeal] = useState(''); // could be null
   const [timeOfDay, setTimeOfDay] = useState('')
   const [calories, setCalories] = useState('')
   const [date, setDate] = useState('')
+  // const [userId, setUserId] = useState('')
 
+
+  // const handleAuthSuccess = (response) => {
+
+    // const user = response.data.user;
+    // console.log(user)
+    // setUserId(user._id); 
+
+  const handleLogSubmission = async (e) => {
+    e.preventDefault();
+    
+    // if (!user._id) {
+    //   console.error("User ID not available. Make sure the user is authenticated.");
+    //   return;
+    // }
+    try {
+      const response = await axios.post("http://localhost:4000/api/foodlogs", {
+        user_id: user._id,
+        meal: meal,
+        timeOfDay: timeOfDay,
+        calories: calories,
+        date: date,
+      });
+      // handleAuthSuccess();
+      console.log("Food log submitted successfully:", response.data);
+      // Optionally, you can clear the form fields after successful submission
+      setMeal('');
+      setTimeOfDay('');
+      setCalories('');
+      setDate('');
+    } catch (error) {
+      console.error("Food log submission failed:", error.message);
+    }
+  };
   
-
+  
    
     return (
         <>
         <h2> Food Logs</h2>
         
         <div>
-        <Form>
+        <Form onSubmit={handleLogSubmission}>
      <Row className="mb-3"> 
       <FormGroup controlId="meal">
         <Form.Label>Meal</Form.Label>
-        <FormControl type="meal"  />
+        <Form.Control onChange={(e) => setMeal(e.target.value)} type="text"  />
       </FormGroup>
    
       <Form.Label htmlFor="timeOfDay">Time of Day</Form.Label>
       
-      <Form.Select aria-label="Default select example">
-      <option value="1">Breakfeast</option>
-      <option value="2">Lunch</option>
-      <option value="3">Dinner</option>
-      <option value="4">Snack</option>
+      <Form.Select  onChange={(e) => setTimeOfDay(e.target.value)} aria-label="Default select example">
+      <option value="Breakfeast">Breakfeast</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Dinner">Dinner</option>
+      <option value="Snack">Snack</option>
     </Form.Select>
     
 
-      <FormGroup controlId="Calories">
+      <Form.Group controlId="Calories">
         <Form.Label>Calories</Form.Label>
-        <FormControl type="Calories" placeholder="100" />
-      </FormGroup>
+        <Form.Control  onChange={(e) => setCalories(e.target.value)} type="Calories" placeholder="100" />
+      </Form.Group>
 
-      <FormGroup controlId="date">
+      <Form.Group controlId="date">
         <Form.Label>Date</Form.Label>
-        <FormControl type="Date" placeholder="MM/DD/YYYY" />
-      </FormGroup>
+        <Form.Control onChange={(e) => setDate(e.target.value)} type="Date" placeholder="MM/DD/YYYY" />
+      </Form.Group>
 
       <Button variant="primary" type="submit">
         Submit
@@ -57,6 +91,7 @@ function LogPage() {
         </>
     );
 }
+
 
 
 export default LogPage

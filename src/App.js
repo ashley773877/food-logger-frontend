@@ -1,4 +1,4 @@
-//import {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
 
@@ -9,6 +9,7 @@ import Navigation from './components/NavBar';
 import LogPage from './pages/LogPage.js'; 
 
 function App() {
+  const [user, setUser]= useState(null);
   return (
   
      <div className="App">
@@ -17,9 +18,9 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
-        <Route path="/Login" element={<LoginPage />} />
+        <Route path="/Login" element={<LoginPage setUser={setUser} />} />
         <Route path="/History" element={<HistoryPage />} />
-        <Route path="/Logs" element={<LogPage />} />
+        <Route path="/Logs" element={<LogPage user={user} />} />
 
       </Routes>
 

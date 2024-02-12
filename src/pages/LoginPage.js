@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 
-function LoginPage() {
+function LoginPage({setUser}) {
     const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
     const [showSignIn, setShowSignIn] = useState(true);
@@ -50,6 +50,7 @@ function LoginPage() {
     })
     .then((response) => {
       console.log("Sign in successful:", response.data);
+      setUser(response.data.user)
     })
     .catch((error) => {
      
