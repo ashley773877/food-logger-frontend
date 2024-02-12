@@ -67,7 +67,7 @@ function SignUpForm() {
           </Form.Label>
           <InputGroup className="mb-2">
             <InputGroup.Text>@</InputGroup.Text>
-            <Form.Control id="inlineFormInputGroup" placeholder="Username" />
+            <Form.Control id="inlineFormInputGroup" placeholder="Username" ref={usernameInputRef} />
           </InputGroup>
         
           
@@ -77,15 +77,15 @@ function SignUpForm() {
         </Form.Group>
          <Form.Group className="mb-3" controlId="formGroupEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="email" />
+          <Form.Control type="email" placeholder="email" ref={emailInputRef} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control type="password" placeholder="Password" ref={passwordInputRef} />
         </Form.Group>
         <Form.Group as={Row} className="mb-3">
         <Col sm={{ span: 10, offset: 2 }}>
-          <Button type="submit">Sign in</Button>
+          <Button type="submit">Sign up</Button>
         </Col>
       </Form.Group>
       

@@ -12,16 +12,29 @@ function LoginPage() {
     const passwordInputRef = useRef(null);
     const [showSignIn, setShowSignIn] = useState(true);
     const [signInError, setSignInError] = useState(null);
+    // const [email, setEmail] = useState(null)
+    // const [password, setPassword] = useState(null);
+
   
     const handleSignIn =  (e) => {
       e.preventDefault();
+
+        // try {
+        //   const res = await axios.post('http://localhost:4000/api/users/signin',{
+        //     email,
+        //     password,
+        //   })
+        //   console.log(res.data)
+        // } catch (error) {
+          
+        // }
       console.log(emailInputRef.current.value);
       console.log(passwordInputRef.current.value);
 
       if (emailInputRef.current.value === "") {
         emailInputRef.current.focus();
-        signInError("Sign-in failed. Please check your credentials")
-        setSignInError("Email is required")
+        signInError("Sign-in failed")
+       
         return;
       }
       if (passwordInputRef.current.value === "") {
@@ -40,7 +53,7 @@ function LoginPage() {
     })
     .catch((error) => {
      
-      console.error("Sign in error:", error.message);
+      console.error("Sign in error:", error);
       const errorMessage = error.response?.data?.message || "Password must be between 6-50 characters";
       setSignInError(errorMessage);
 
@@ -91,8 +104,12 @@ return (
               </span>
             
             </span>
+            
+            {signInError && <div style={{color: 'red'}}>{signInError}</div>
+}
           </div>
         )}
+        
       </main>
     );
   

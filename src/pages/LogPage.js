@@ -1,9 +1,17 @@
 import { Form, FormGroup, FormControl, Button, Row, } from 'react-bootstrap';
-
+import { useState } from 'react';
+import axios from 'axios'
 
 
 
 function LogPage() {
+  const[meal, setMeal] = useState(''); // could be null
+  const [timeOfDay, setTimeOfDay] = useState('')
+  const [calories, setCalories] = useState('')
+  const [date, setDate] = useState('')
+
+  
+
    
     return (
         <>
