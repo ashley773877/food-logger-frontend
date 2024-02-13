@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
 import { Form, Button, Table } from 'react-bootstrap';
+import axios from 'axios'
 
 function HistoryPage() {
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [foodLogs, setFoodLogs] = useState([]); // Assuming you have a state for food logs
+  const [date, setDate] = useState('');
+  // const [endDate, setEndDate] = useState('');
+  const [foodLogs, setFoodLogs] = useState([]); 
+  const[meal, setMeal] = useState(''); // could be null
+  const [timeOfDay, setTimeOfDay] = useState('')
+  const [calories, setCalories] = useState('')
 
-  const handleDateRangeSubmit = (e) => {
+  const handleDateRangeSubmit = async (e) => {
     e.preventDefault();
-    // Handle the date range submission logic here
+   
+    try{
+      const res = await axios.post("http://localhost:4000/api/foodlogs/by-date", {
+        meal: meal,
+        timeOfDay: timeOfDay,
+        calories: calories,
+        date: date,
+      })
+      setFoodLogs(res.data.logs);
+    } catch (error) {
+      console.log("error fetching logs", error.message)
+    }
   };
 
   return (
@@ -20,19 +35,19 @@ function HistoryPage() {
           <Form.Label>Start Date</Form.Label>
           <Form.Control
             type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            value={date}
+          
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        {/* <Form.Group className="mb-3">
           <Form.Label>End Date</Form.Label>
           <Form.Control
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Button variant="primary" type="submit">
           Get History
@@ -42,11 +57,11 @@ function HistoryPage() {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Meal</th>
-            <th>Time of Day</th>
-            <th>Calories</th>
-            {/* Add other columns as needed */}
+            <th onChange={(e) => setDate(e.target.value)}>Date</th>
+            <th onChange={(e) => setMeal(e.target.value)}>Meal</th>
+            <th onChange={(e) => setTimeOfDay(e.target.value)}>Time of Day</th>
+            <th onChange={(e) => setCalories(e.target.value)}> Calories</th>
+          
           </tr>
         </thead>
         <tbody>
@@ -56,7 +71,7 @@ function HistoryPage() {
               <td>{log.meal}</td>
               <td>{log.timeOfDay}</td>
               <td>{log.calories}</td>
-              {/* Add other columns as needed */}
+           
             </tr>
           ))}
         </tbody>
