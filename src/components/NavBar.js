@@ -2,6 +2,7 @@ import { Link}  from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import LogOutButton from './LogOutButton';
 
 
 // added a navbar from react-bootstrap
@@ -16,10 +17,13 @@ function Navigation() {
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
             <Nav.Link as={Link} to="/History">History</Nav.Link>
             <Nav.Link as={Link} to="Logs">Logs</Nav.Link>
+            {/* <Nav.Link as={Link} to="/logout">Log out</Nav.Link> */}
+          <LogOutButton />
            
           </Nav>
         </Navbar.Collapse>
       </Container>
+      
     </Navbar>
   );
 }

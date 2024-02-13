@@ -19,15 +19,7 @@ function LoginPage({setUser}) {
     const handleSignIn =  (e) => {
       e.preventDefault();
 
-        // try {
-        //   const res = await axios.post('http://localhost:4000/api/users/signin',{
-        //     email,
-        //     password,
-        //   })
-        //   console.log(res.data)
-        // } catch (error) {
-          
-        // }
+        
       console.log(emailInputRef.current.value);
       console.log(passwordInputRef.current.value);
 
@@ -50,6 +42,7 @@ function LoginPage({setUser}) {
     })
     .then((response) => {
       console.log("Sign in successful:", response.data);
+      localStorage.setItem('foodLogUser', JSON.stringify(response.date))
       setUser(response.data.user)
     })
     .catch((error) => {

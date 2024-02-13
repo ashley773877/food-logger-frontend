@@ -18,13 +18,11 @@ function QuotesList() {
     fetchData()
   }, []);
     return (
-        <div>
-            <h1>Quotes List</h1>
-            {/* {quotes && quotes.map((quote) => 
-                 <Quotes quote={quote} key={quote.id} /> )
-            }  */}
-            {quotes && <Quotes quote={quotes[0]} />}
-        </div>
+        <footer>
+          
+          
+            {quotes && <Quotes quote={quotes[13]} />}
+        </footer>
     );
 }
 

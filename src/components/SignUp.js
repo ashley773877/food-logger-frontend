@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { useRef } from "react";
 import axios from 'axios'
 
-function SignUpForm() {
+function SignUpForm(setUser) {
     const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
     const usernameInputRef = useRef(null);
@@ -22,6 +22,8 @@ function SignUpForm() {
             password: passwordInputRef.current.value,
           });
           console.log("Signup successful:", response.data);
+          localStorage.setItem('foodLogUser', JSON.stringify(response.date))
+      setUser(response.data.user)
         } catch (error) {
           console.error("Signup failed:", error.message);
         }
