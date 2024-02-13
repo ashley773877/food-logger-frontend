@@ -4,50 +4,44 @@ import axios from 'axios'
 
 function HistoryPage() {
   const [date, setDate] = useState('');
-  // const [endDate, setEndDate] = useState('');
+ 
   const [foodLogs, setFoodLogs] = useState([]); 
-  const[meal, setMeal] = useState(''); // could be null
-  const [timeOfDay, setTimeOfDay] = useState('')
-  const [calories, setCalories] = useState('')
+ 
 
-  const handleDateRangeSubmit = async (e) => {
+  const handleDateSubmit = async (e) => {
     e.preventDefault();
-   
+   console.log(date);
     try{
       const res = await axios.post("http://localhost:4000/api/foodlogs/by-date", {
-        meal: meal,
-        timeOfDay: timeOfDay,
-        calories: calories,
         date: date,
+     
       })
-      setFoodLogs(res.data.logs);
+      setFoodLogs(res.data);
     } catch (error) {
       console.log("error fetching logs", error.message)
     }
   };
 
+  // const handleDate = async (e) => {
+  //   e.preventDefault();
+  //   setDate(e.target.value)
+  // }
+  
+  
   return (
     <div>
       <h2>History</h2>
 
-      <Form onSubmit={handleDateRangeSubmit}>
+      <Form onSubmit={handleDateSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Start Date</Form.Label>
           <Form.Control
             type="date"
             value={date}
-          
+          onChange={(e) => setDate(e.target.value)}
           />
         </Form.Group>
 
-        {/* <Form.Group className="mb-3">
-          <Form.Label>End Date</Form.Label>
-          <Form.Control
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
-        </Form.Group> */}
 
         <Button variant="primary" type="submit">
           Get History
@@ -57,10 +51,10 @@ function HistoryPage() {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th onChange={(e) => setDate(e.target.value)}>Date</th>
-            <th onChange={(e) => setMeal(e.target.value)}>Meal</th>
-            <th onChange={(e) => setTimeOfDay(e.target.value)}>Time of Day</th>
-            <th onChange={(e) => setCalories(e.target.value)}> Calories</th>
+            <th >Date</th>
+            <th >Meal</th>
+            <th >Time of Day</th>
+            <th > Calories</th>
           
           </tr>
         </thead>
