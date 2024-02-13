@@ -1,18 +1,24 @@
-import { Form, FormGroup, Button, Row, } from 'react-bootstrap';
+import { Form, FormGroup, Button, Row, Alert } from 'react-bootstrap';
 import { useState } from 'react';
 import axios from 'axios'
-
+import { useAuth } from '../context/AuthContext';
 
 
 function LogPage({user}) {
-  const[meal, setMeal] = useState(''); // could be null
+  const { isAuthenticated } = useAuth(); // just added 
+  const[meal, setMeal] = useState(''); 
   const [timeOfDay, setTimeOfDay] = useState('Breakfeast')
   const [calories, setCalories] = useState('')
   const [date, setDate] = useState('')
-
+  const [showAlert, setShowAlert] = useState(false); // just added
 
   const handleLogSubmission = async (e) => {
     e.preventDefault();
+
+    if(!isAuthenticated) {
+      setShowAlert(true);
+      return;
+    }
     
     try {
       const response = await axios.post("http://localhost:4000/api/foodlogs", {
@@ -33,9 +39,17 @@ function LogPage({user}) {
   };
   return (
         <>
-        <h2> Food Logs</h2>
+        <h2> Log you're Meals!</h2>
         
         <div>
+        {showAlert && (
+          <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
+            Please sign in to submit a food log.
+          </Alert>
+        )}
+        
+        
+        
         <Form onSubmit={handleLogSubmission}>
      <Row className="mb-3"> 
       <FormGroup controlId="meal">

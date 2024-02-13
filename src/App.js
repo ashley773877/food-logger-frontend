@@ -1,6 +1,7 @@
 import { useState} from 'react'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext';
 
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
@@ -14,7 +15,7 @@ function App() {
   return (
   
      <div className="App">
-
+      <AuthProvider>
     
       <Navigation />
       <Routes>
@@ -25,7 +26,7 @@ function App() {
         <Route path="logout" element={<HomePage />} />
 
       </Routes>
-
+      </AuthProvider>
     </div> 
    
   );
