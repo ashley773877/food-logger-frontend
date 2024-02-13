@@ -22,7 +22,7 @@ function App() {
         <Route path="/Login" element={<LoginPage setUser={setUser} />} />
         <Route path="/History" element={<HistoryPage />} />
         <Route path="/Logs" element={<LogPage user={user} />} />
-        {/* <Route path="logout" element={<HomePage />} /> */}
+        <Route path="logout" element={<HomePage />} />
 
       </Routes>
 
