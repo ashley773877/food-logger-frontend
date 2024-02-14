@@ -3,12 +3,20 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import LogOutButton from './LogOutButton';
+import styled from 'styled-components'
+
+const StyledNavbar = styled(Navbar)`
+  background-color: #AED1B5;
+`;
+
 
 
 
 function Navigation() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
+       <StyledNavbar expand="lg">
+       <FullWidthContainer>
       <Container>
         <Navbar.Brand href="/">EverDiet</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -23,7 +31,8 @@ function Navigation() {
           </Nav>
         </Navbar.Collapse>
       </Container>
-      
+      </FullWidthContainer>
+      </StyledNavbar>
     </Navbar>
   );
 }
@@ -37,25 +46,3 @@ export default Navigation;
 
 
 
-// function NavBar() {
-//     return (
-        
-   
-//              <div>  
-//              <nav>
-//             <Link to="/">Home</Link>
-//             <br />
-//             <Link to="/Login"> Login</Link>
-//             <br />
-//             <Link to= "/History">History</Link>
-//             <br />
-//             <Link to="/logs">Foodlog</Link>
-       
-//          </nav>
-//      </div>
-//     )
-// }
-    
-
-
-// export default NavBar
