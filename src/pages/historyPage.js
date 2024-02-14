@@ -36,7 +36,7 @@ function HistoryPage() {
   
   return (
     <div>
-      <h2>History</h2>
+      <h2> History</h2>
       {showAlert && (
   <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
     Please sign in to view history.

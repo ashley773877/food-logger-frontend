@@ -27,8 +27,8 @@ function LogOutButton() {
 
 return (
     <div>
-        {/* <Button variant="secondary" onClick={handleLogout} >Log Out</Button> */}
-        <Button variant="outline-log Out" onClick={handleLogout}>Log Out</Button>
+       
+        <Button variant="outline-log Out" onClick={handleLogout}>Sign Out</Button>
     </div>
 )
 

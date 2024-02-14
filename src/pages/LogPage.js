@@ -46,7 +46,7 @@ function LogPage({user}) {
   };
   return (
         <>
-        <h2> Log you're Meals!</h2>
+        <h2> Log your Meals!</h2>
         
         <div>
         {showAlert && (
