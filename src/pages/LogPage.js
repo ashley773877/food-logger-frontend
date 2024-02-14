@@ -1,19 +1,27 @@
-import { Form, FormGroup, Button, Row, Alert } from 'react-bootstrap';
+import { Form, FormGroup, Button, Row, Alert, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
+import backgroundImg from '../images/LogPage.jpeg'
 
 import {  useAuth } from '../context/AuthContext';
 
 
 const StyledLogPage = styled.div`
-  background-image: url(${``}); 
+  background-image: url(${backgroundImg}); 
   background-size: cover;
   filter: grayscale(100%);
-  filter: brightness(0.5);
+  filter: brightness(0.9);
   width: 100%;
-  height: 100%;
-  `
+  height: 200%;
+  color: white;
+  Form {
+    max-width: 300px; 
+    margin: auto; 
+    border: 5px solid #415846;
+    padding: 15px;
+  }
+`;
 
 
 
@@ -26,7 +34,8 @@ function LogPage({user}) {
   const [timeOfDay, setTimeOfDay] = useState('Breakfeast')
   const [calories, setCalories] = useState('')
   const [date, setDate] = useState('')
-  const [showAlert, setShowAlert] = useState(false); // just added
+  const [showAlert, setShowAlert] = useState(null); // just added
+  
   useEffect(() => {
     console.log('isAuthenticated: changed', isAuthenticated);
   }, [isAuthenticated]); 
@@ -57,57 +66,62 @@ function LogPage({user}) {
     }
   };
   return (
-        <>
-       
-        <h2> Log your Meals!</h2>
+        <> 
+        <StyledLogPage> 
+         <h2> Log your Meals!</h2>
         
-        <div>
-      
-        {showAlert && (
+         <div>
+          {showAlert && (
           <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Please sign in to submit a food log.
           </Alert>
         )}
         
-        
-        
-        <Form onSubmit={handleLogSubmission}>
+         <Form onSubmit={handleLogSubmission}>
      <Row className="mb-3"> 
+     
       <FormGroup controlId="meal">
         <Form.Label>Meal</Form.Label>
         <Form.Control onChange={(e) => setMeal(e.target.value)} type="text"  />
       </FormGroup>
-   
-      <Form.Label htmlFor="timeOfDay">Time of Day</Form.Label>
       
+     
+    <Col> 
+     <Form.Label htmlFor="timeOfDay">Time of Day</Form.Label>
       <Form.Select  onChange={(e) => setTimeOfDay(e.target.value)} aria-label="Default select example">
-      <option value="Breakfeast">Breakfeast</option>
+      <option value="Snack">Snack</option>
       <option value="Lunch">Lunch</option>
       <option value="Dinner">Dinner</option>
-      <option value="Snack">Snack</option>
+      <option value="Breakfeast">Breakfeast</option>
     </Form.Select>
+    </Col>
     
-
+    <Col> 
       <Form.Group controlId="Calories">
         <Form.Label>Calories</Form.Label>
         <Form.Control  onChange={(e) => setCalories(e.target.value)} type="Calories" placeholder="100" />
       </Form.Group>
-
+      </Col>
+      
+      
       <Form.Group controlId="date">
         <Form.Label>Date</Form.Label>
         <Form.Control onChange={(e) => setDate(e.target.value)} type="Date" placeholder="MM/DD/YYYY" />
       </Form.Group>
-
-      <Button variant="primary" type="submit">
+      
+      
+      <Col> 
+      <Button variant="success" type="submit">
         Submit
       </Button>
+      </Col>
       </Row>
     </Form>
 
-
-
         </div>
+        </StyledLogPage>
         </>
+        
     );
 }
 

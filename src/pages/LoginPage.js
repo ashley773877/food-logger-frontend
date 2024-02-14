@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import SignUpForm from '../components/SignUp';
 import Button from 'react-bootstrap/Button';
@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
+import { AuthProvider } from "../context/AuthContext";
 
 
 
@@ -18,7 +19,7 @@ import Form from 'react-bootstrap/Form';
 
 
 function LoginPage({setUser}) {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
    const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
     const [showSignIn, setShowSignIn] = useState(true);
@@ -54,17 +55,17 @@ function LoginPage({setUser}) {
       password: passwordInputRef.current.value,
     })
     .then((response) => {
-      console.log("Sign in successful:", response.data);
+      console.log("isAuthenticated:");
       localStorage.setItem('foodLogUser', JSON.stringify(response.date))
       setUser(response.data.user);
-      // navigate('/')
+      navigate('/')
     })
     .catch((error) => {
      
       console.error("Sign in error:", error);
       const errorMessage = error.response?.data?.message || "Password must be between 6-50 characters";
       setSignInError(errorMessage);
-      setShowAlert(true);
+      setShowAlert(false);
 
     });
     

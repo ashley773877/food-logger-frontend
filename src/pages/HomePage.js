@@ -44,7 +44,7 @@ function HomePage() {
             <CenterText>
             <Overlay style={{position: 'absolute', height:'110%', width:'2%', top: '10%', left:'4%' }}/>
               <StyledText style={{fontSize:'50px',fontWeight:'800'}}>Just For the Health of it!</StyledText>
-             
+            
              <StyledText style={{fontSize:'20px'}}> Record your meals and stay consistent in your journey</StyledText>
              <Overlay style={{position: 'absolute', width:'80%', top: '50%', right:'.1%' }}/>
            </CenterText>

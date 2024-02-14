@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from 'axios'
 
-function SignUpForm(setUser) {
+function SignUpForm({setUser}) {
   const navigate = useNavigate();
    const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
@@ -25,12 +25,14 @@ function SignUpForm(setUser) {
             password: passwordInputRef.current.value,
           });
           console.log("Signup successful:", response.data);
-          localStorage.setItem('foodLogUser', JSON.stringify(response.date))
-      setUser(response.data.user)
+          localStorage.setItem('foodLogUser', JSON.stringify(response.data))
+          console.log("Signup successful:", response.data);
+      // setUser(response.data.user.user)
       navigate('/')
         } catch (error) {
           console.error("Signup failed:", error.message);
         }
+        // setUser(response.data.user)
       };
       
       return (
@@ -77,7 +79,7 @@ function SignUpForm(setUser) {
           </InputGroup>
         
           
-        <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Group className="mb-3" controlId="formGroupAge">
           <Form.Label>age</Form.Label>
           <Form.Control type="age" placeholder="age" />
         </Form.Group>

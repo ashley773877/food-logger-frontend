@@ -55,7 +55,7 @@ function HistoryPage() {
         </Form.Group>
 
 
-        <Button variant="primary" type="submit">
+        <Button variant="success" type="submit">
           Get History
         </Button>
       </Form>

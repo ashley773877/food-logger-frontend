@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -8,9 +8,9 @@ const AuthContext = createContext();
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
  
-const [isAuthenticated, setIsAuthenticated] = useState(false); // Add this line
+const [isAuthenticated, setIsAuthenticated] = useState(true); // Added this line
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const { signIn: authSignIn } = useAuth();
 
   const signIn = async (userData) => {
@@ -22,7 +22,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(false); // Add this line
       setUser(user);
       setIsAuthenticated(true)
       // authSignIn(user);
-      // navigate('/');
+      navigate('/');
     } catch (error) {
       console.error('Sign in error:', error);
     }
