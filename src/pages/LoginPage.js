@@ -1,4 +1,7 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
+
 import axios from 'axios'
 import SignUpForm from '../components/SignUp';
 
@@ -8,10 +11,13 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 
 function LoginPage({setUser}) {
-    const emailInputRef = useRef(null);
+  // const navigate = useNavigate();
+   const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
     const [showSignIn, setShowSignIn] = useState(true);
     const [signInError, setSignInError] = useState(null);
+    const [ setShowAlert] = useState(false);
+
     // const [email, setEmail] = useState(null)
     // const [password, setPassword] = useState(null);
 
@@ -43,13 +49,15 @@ function LoginPage({setUser}) {
     .then((response) => {
       console.log("Sign in successful:", response.data);
       localStorage.setItem('foodLogUser', JSON.stringify(response.date))
-      setUser(response.data.user)
+      setUser(response.data.user);
+      // navigate('/')
     })
     .catch((error) => {
      
       console.error("Sign in error:", error);
       const errorMessage = error.response?.data?.message || "Password must be between 6-50 characters";
       setSignInError(errorMessage);
+      setShowAlert(true);
 
     });
     

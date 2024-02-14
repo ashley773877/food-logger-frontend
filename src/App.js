@@ -1,7 +1,7 @@
 import { useState} from 'react'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
-import { AuthProvider } from './context/AuthContext';
+//  import { AuthProvider } from './context/AuthContext';
 
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
@@ -15,7 +15,7 @@ function App() {
   return (
   
      <div className="App">
-      <AuthProvider>
+   
     
       <Navigation />
       <Routes>
@@ -24,9 +24,12 @@ function App() {
         <Route path="/History" element={<HistoryPage />} />
         <Route path="/Logs" element={<LogPage user={user} />} />
         <Route path="logout" element={<HomePage />} />
+        {/* <Route path="/signin" element={<HomePage />} />
+        <Route path="/signup" element={<HomePage />} /> */}
+
 
       </Routes>
-      </AuthProvider>
+   
     </div> 
    
   );

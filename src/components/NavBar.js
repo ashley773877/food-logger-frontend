@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import LogOutButton from './LogOutButton';
 
 
-// added a navbar from react-bootstrap
+
 function Navigation() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -14,10 +14,10 @@ function Navigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/login">Sign In/Sign Up</Nav.Link>
+            <Nav.Link as={Link} to="/login">login</Nav.Link>
             <Nav.Link as={Link} to="/History">History</Nav.Link>
             <Nav.Link as={Link} to="Logs">Logs</Nav.Link>
-            {/* <Nav.Link as={Link} to="/logout">Log out</Nav.Link> */}
+         
           <LogOutButton />
            
           </Nav>

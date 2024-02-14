@@ -1,15 +1,18 @@
-// page for signup form will be rendered into sign in folder
-
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
+
+
 import axios from 'axios'
 
 function SignUpForm(setUser) {
-    const emailInputRef = useRef(null);
+  const navigate = useNavigate();
+   const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
     const usernameInputRef = useRef(null);
    
@@ -24,6 +27,7 @@ function SignUpForm(setUser) {
           console.log("Signup successful:", response.data);
           localStorage.setItem('foodLogUser', JSON.stringify(response.date))
       setUser(response.data.user)
+      navigate('/')
         } catch (error) {
           console.error("Signup failed:", error.message);
         }
@@ -31,7 +35,7 @@ function SignUpForm(setUser) {
       
       return (
         <div>
-            <h1> Sign Up </h1>
+            <h1> Register </h1>
 
             <fieldset style={{border: '1px solid white', padding: '10px',
             borderRadius: '8px', width:"500px", marginBottom: "10px" }}>

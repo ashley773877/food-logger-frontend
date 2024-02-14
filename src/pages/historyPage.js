@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button, Table, Alert } from 'react-bootstrap';
 import axios from 'axios'
-import { useAuth } from '../context/AuthContext';
+import {  useAuth} from '../context/AuthContext'
+
 
 
 
 function HistoryPage() {
+   useAuth();
   const { isAuthenticated } = useAuth(); // just added
   const [showAlert, setShowAlert] = useState(false); // just added
   const [date, setDate] = useState('');

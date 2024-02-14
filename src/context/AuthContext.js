@@ -1,35 +1,51 @@
 import React, { createContext, useContext, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+ 
+const [isAuthenticated, setIsAuthenticated] = useState(false); // Add this line
 
-  const signIn = (userData) => {
-    // Perform authentication logic
-    // Example: Make a request to your server to verify user credentials
-    // If authentication is successful, set the user in the context
+  // const navigate = useNavigate();
+  // const { signIn: authSignIn } = useAuth();
 
-    // For demonstration purposes, let's assume the user is authenticated
-    setUser(userData);
+  const signIn = async (userData) => {
+    try {
+      const response = await axios.post('http://localhost:4000/api/users/signin', userData);
+      const { user } = response.data;
+      console.log('user signed in', user)
+      console.log('isAuthenticated after sign in:', isAuthenticated); 
+      setUser(user);
+      setIsAuthenticated(true)
+      // authSignIn(user);
+      // navigate('/');
+    } catch (error) {
+      console.error('Sign in error:', error);
+    }
   };
 
   const signOut = () => {
-    // Perform logout logic
-    // Example: Clear user data from local storage or make a request to invalidate the token
-
-    // For demonstration purposes, let's just clear the user
     setUser(null);
+    setIsAuthenticated(false)
   };
+  // const value = {
+  //   user,
+  //   signIn,
+  //   signOut,
+  //   isAuthenticated: !!user, 
+  // };
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut }}>
+    <AuthContext.Provider value={{user, signIn, signOut, isAuthenticated}}>
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
+}
+  const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
@@ -37,4 +53,6 @@ export const useAuth = () => {
   return context;
 };
 
+
+export  {AuthProvider, useAuth};
 

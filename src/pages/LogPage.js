@@ -1,21 +1,28 @@
 import { Form, FormGroup, Button, Row, Alert } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios'
-import { useAuth } from '../context/AuthContext';
+
+import {  useAuth } from '../context/AuthContext';
+
+
 
 
 function LogPage({user}) {
-  const { isAuthenticated } = useAuth(); // just added 
+  const { isAuthenticated } = useAuth(); 
+ 
   const[meal, setMeal] = useState(''); 
   const [timeOfDay, setTimeOfDay] = useState('Breakfeast')
   const [calories, setCalories] = useState('')
   const [date, setDate] = useState('')
   const [showAlert, setShowAlert] = useState(false); // just added
-
+  useEffect(() => {
+    console.log('isAuthenticated: changed', isAuthenticated);
+  }, [isAuthenticated]); 
   const handleLogSubmission = async (e) => {
     e.preventDefault();
 
     if(!isAuthenticated) {
+      console.log('not authenticated. alert will be shown');
       setShowAlert(true);
       return;
     }
