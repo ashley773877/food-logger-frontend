@@ -1,14 +1,21 @@
 import React, { useRef, useState } from "react";
 // import { useNavigate } from "react-router-dom";
-
-
 import axios from 'axios'
 import SignUpForm from '../components/SignUp';
-
 import Button from 'react-bootstrap/Button';
+
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
+
+
+
+
+
+
+
+
+
 
 function LoginPage({setUser}) {
   // const navigate = useNavigate();
@@ -64,7 +71,7 @@ function LoginPage({setUser}) {
 };
 return (
       <main>
-       
+     
         {showSignIn ? (
           <div>
             <h1> Sign In</h1>

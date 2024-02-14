@@ -6,18 +6,24 @@ import LogOutButton from './LogOutButton';
 import styled from 'styled-components'
 
 const StyledNavbar = styled(Navbar)`
-  background-color: #AED1B5;
+  background-color: #415846;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 `;
+
 
 
 
 
 function Navigation() {
   return (
+    <StyledNavbar expand="lg">
     <Navbar expand="lg" className="bg-body-tertiary">
-       <StyledNavbar expand="lg">
-       <FullWidthContainer>
-      <Container>
+    <StyledNavbar>
+      <Container >
+        <StyledNavbar>
         <Navbar.Brand href="/">EverDiet</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -30,10 +36,11 @@ function Navigation() {
            
           </Nav>
         </Navbar.Collapse>
+        </StyledNavbar>
       </Container>
-      </FullWidthContainer>
       </StyledNavbar>
     </Navbar>
+    </StyledNavbar>
   );
 }
 

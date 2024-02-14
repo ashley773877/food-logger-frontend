@@ -1,8 +1,20 @@
 import { Form, FormGroup, Button, Row, Alert } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
+import styled from 'styled-components'
 
 import {  useAuth } from '../context/AuthContext';
+
+
+const StyledLogPage = styled.div`
+  background-image: url(${``}); 
+  background-size: cover;
+  filter: grayscale(100%);
+  filter: brightness(0.5);
+  width: 100%;
+  height: 100%;
+  `
+
 
 
 
@@ -46,9 +58,11 @@ function LogPage({user}) {
   };
   return (
         <>
+       
         <h2> Log your Meals!</h2>
         
         <div>
+      
         {showAlert && (
           <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Please sign in to submit a food log.
