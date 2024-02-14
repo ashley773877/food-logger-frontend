@@ -24,7 +24,8 @@ function Navigation() {
     <StyledNavbar>
       <Container >
         <StyledNavbar>
-        <Navbar.Brand href="/">EverDiet</Navbar.Brand>
+        <Navbar.Brand href="/" style={{fontVariant: 'small-caps', fontWeight:'700', color:'white', fontStretch: 'ultra-expanded'}}
+        >EverDiet</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
