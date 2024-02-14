@@ -7,15 +7,11 @@ import backgroundImg from '../images/LogPage.jpeg'
 import {  useAuth } from '../context/AuthContext';
 
 
-const StyledLogPage = styled.div`
-  background-image: url(${backgroundImg}); 
-  background-size: cover;
-  filter: grayscale(100%);
-  filter: brightness(0.9);
-  width: 100%;
+
+const StyledForm = styled.div` 
+  max-width: 300%;
   height: 200%;
   color: white;
-  Form {
     max-width: 300px; 
     margin: auto; 
     border: 5px solid #415846;
@@ -23,6 +19,13 @@ const StyledLogPage = styled.div`
   }
 `;
 
+// const StyledImg = styled.img`
+//   background-image: url(${backgroundImg}); 
+//   background-size: cover;
+//   width: 100%;
+//   height: 200%;
+
+// `;
 
 
 
@@ -67,16 +70,17 @@ function LogPage({user}) {
   };
   return (
         <> 
-        <StyledLogPage> 
-         <h2> Log your Meals!</h2>
+       {/* <StyledImg src={backgroundImg} alt="Background" /> */}
+     
         
          <div>
+         <h2> Log your Meals!</h2>
           {showAlert && (
           <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Please sign in to submit a food log.
           </Alert>
         )}
-        
+     <StyledForm> 
          <Form onSubmit={handleLogSubmission}>
      <Row className="mb-3"> 
      
@@ -103,23 +107,24 @@ function LogPage({user}) {
       </Form.Group>
       </Col>
       
-      
-      <Form.Group controlId="date">
+       <Form.Group controlId="date">
         <Form.Label>Date</Form.Label>
         <Form.Control onChange={(e) => setDate(e.target.value)} type="Date" placeholder="MM/DD/YYYY" />
       </Form.Group>
       
-      
-      <Col> 
+       <Col> 
       <Button variant="success" type="submit">
         Submit
       </Button>
-      </Col>
+       </Col>
+      
       </Row>
+    
     </Form>
-
+    </StyledForm>
+   
         </div>
-        </StyledLogPage>
+        
         </>
         
     );

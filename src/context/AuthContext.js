@@ -8,12 +8,12 @@ const AuthContext = createContext();
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
  
-const [isAuthenticated, setIsAuthenticated] = useState(true); // Added this line
+const [isAuthenticated, setIsAuthenticated] = useState(false); // Added this line
 
-  const navigate = useNavigate();
+const navigate = useNavigate();
   // const { signIn: authSignIn } = useAuth();
 
-  const signIn = async (userData) => {
+const signIn = async (userData) => {
     try {
       const response = await axios.post('http://localhost:4000/api/users/signin', userData);
       const { user } = response.data;
@@ -32,12 +32,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(true); // Added this line
     setUser(null);
     setIsAuthenticated(false)
   };
-  // const value = {
-  //   user,
-  //   signIn,
-  //   signOut,
-  //   isAuthenticated: !!user, 
-  // };
+
 
   return (
     <AuthContext.Provider value={{user, signIn, signOut, isAuthenticated}}>

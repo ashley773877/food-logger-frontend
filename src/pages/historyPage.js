@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button, Table, Alert } from 'react-bootstrap';
 import axios from 'axios'
 import {  useAuth} from '../context/AuthContext'
@@ -6,13 +6,13 @@ import {  useAuth} from '../context/AuthContext'
 
 
 
-function HistoryPage() {
-   useAuth();
+function HistoryPage({user}) {
+ 
   const { isAuthenticated } = useAuth(); // just added
   const [showAlert, setShowAlert] = useState(false); // just added
   const [date, setDate] = useState('');
   const [foodLogs, setFoodLogs] = useState([]); 
- 
+ console.log(user)
 
   const handleDateSubmit = async (e) => {
     e.preventDefault();
@@ -23,27 +23,30 @@ function HistoryPage() {
     return;
   }
     try{
-      const res = await axios.post("http://localhost:4000/api/foodlogs/by-date", {
+      const res = await axios.post(`http://localhost:4000/api/foodlogs/by-date/${user._id}`, {
         date: date,
      
       })
       setFoodLogs(res.data);
+      e.target.reset()
     } catch (error) {
       console.log("error fetching logs", error.message)
     }
-  };
+  }; 
   
   
   return (
-    <div>
+    
+   <div> 
       <h2> History</h2>
-      {showAlert && (
+    
+       {showAlert && (
   <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
     Please sign in to view history.
   </Alert>
-)}
+)}  
 
-
+<div> 
       <Form onSubmit={handleDateSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Start Date</Form.Label>
@@ -81,9 +84,13 @@ function HistoryPage() {
             </tr>
           ))}
         </tbody>
-      </Table>
-    </div>
+      </Table> <div/>
+  <h2> please log in</h2>  </div> 
+    
+    </div> 
   );
-}
+  
+  }
+
 
 export default HistoryPage;
