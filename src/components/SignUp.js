@@ -3,12 +3,19 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import Fieldset from 'react-bootstrap/Button';
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
-
-
 import axios from 'axios'
+
+
+
+
+
+
+
+
+
 
 function SignUpForm({setUser}) {
   const navigate = useNavigate();
@@ -36,37 +43,39 @@ function SignUpForm({setUser}) {
       };
       
       return (
+        
         <div>
             <h1> Register </h1>
 
-            <fieldset style={{border: '1px solid white', padding: '10px',
-            borderRadius: '8px', width:"500px", marginBottom: "10px" }}>
+            <Fieldset style={{border: '1px solid white', padding: '10px',
+            borderRadius: '8px', width:"500px", marginBottom: "10px", backgroundColor: '#415846' }}>
+      
         <Form.Group as={Row} className="mb-3">
           <Form.Label as="legend" column sm={2}>
             Gender
           </Form.Label>
           <Col sm={10}>
             <Form.Check
-              type="Gender"
+              type="radio"
               label="Female"
               name="formHorizontalRadios"
               id="formHorizontalRadios1"
             />
             <Form.Check
-              type="Gender"
+              type="radio"
               label="Male"
               name="formHorizontalRadios"
               id="formHorizontalRadios2"
             />
             <Form.Check
-              type="Gender"
+              type="radio"
               label="Rather not say"
               name="formHorizontalRadios"
               id="formHorizontalRadios3"
             />
           </Col>
         </Form.Group>
-      </fieldset>
+      </Fieldset>
         
         <Form onSubmit={handleSignUp}>
      
@@ -75,31 +84,33 @@ function SignUpForm({setUser}) {
           </Form.Label>
           <InputGroup className="mb-2">
             <InputGroup.Text>@</InputGroup.Text>
-            <Form.Control id="inlineFormInputGroup" placeholder="Username" ref={usernameInputRef} />
+            <Form.Control  id="inlineFormInputGroup" placeholder="Username" ref={usernameInputRef} />
           </InputGroup>
         
           
         <Form.Group className="mb-3" controlId="formGroupAge">
-          <Form.Label>age</Form.Label>
+          <Form.Label style={{color: 'white', frontSize:'50px', fontWeight: '700'}}>age</Form.Label>
           <Form.Control type="age" placeholder="age" />
         </Form.Group>
          <Form.Group className="mb-3" controlId="formGroupEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label style={{color: 'white', frontSize:'50px', fontWeight: '700'}}>Email address</Form.Label>
           <Form.Control type="email" placeholder="email" ref={emailInputRef} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label style={{color: 'white', frontSize:'50px', fontWeight: '700'}}>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" ref={passwordInputRef} />
         </Form.Group>
         <Form.Group as={Row} className="mb-3">
         <Col sm={{ span: 10, offset: 2 }}>
-          <Button type="submit">Sign up</Button>
+          <Button variant="success" type="submit">Sign up</Button>
         </Col>
       </Form.Group>
       
       </Form>
      
       </div>
+      
+      
     );
     }
 

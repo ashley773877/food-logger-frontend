@@ -5,27 +5,26 @@ import styled from 'styled-components'
 import backgroundImg from '../images/LogPage.jpeg'
 
 
-
-
-
 const StyledForm = styled.div` 
   max-width: 300%;
-  height: 200%;
   color: white;
-    max-width: 300px; 
-    margin: auto; 
-    border: 5px solid #415846;
-    padding: 15px;
+  margin: auto; 
+  border: 5px solid #415846;
+  padding: 15px; 
   }
 `;
 
-// const StyledImg = styled.img`
-//   background-image: url(${backgroundImg}); 
-//   background-size: cover;
-//   width: 100%;
-//   height: 200%;
+const StyledImgWrapper = styled.div`
+  background-image: url(${backgroundImg}); 
+  background-size: cover;
+  background-position:
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-// `;
+`;
 
 
 
@@ -61,29 +60,29 @@ function LogPage({user}) {
     }
   };
   return (
-        <> 
-       {/* <StyledImg src={backgroundImg} alt="Background" /> */}
-     
-        
-         <div>
-         <h2> Log your Meals!</h2>
+       
+       <> 
+       <StyledImgWrapper>
+       <div>
+         <h2 style={{color: 'white', fontSize:'45px'}}> Log your Meals!</h2>
           {showAlert && (
           <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Please sign in to submit a food log.
           </Alert>
         )}
+        
      <StyledForm> 
          <Form onSubmit={handleLogSubmission}>
      <Row className="mb-3"> 
      
       <FormGroup controlId="meal">
-        <Form.Label>Meal</Form.Label>
-        <Form.Control onChange={(e) => setMeal(e.target.value)} type="text"  />
+        <Form.Label style={{color: 'white', frontSize:'50px', fontWeight: '700'}}>Meal</Form.Label>
+        <Form.Control  onChange={(e) => setMeal(e.target.value)} type="text"  />
       </FormGroup>
       
      
     <Col> 
-     <Form.Label htmlFor="timeOfDay">Time of Day</Form.Label>
+     <Form.Label style={{color: 'white', frontSize:'50px', fontWeight: '700'}} htmlFor="timeOfDay">Time of Day</Form.Label>
       <Form.Select  onChange={(e) => setTimeOfDay(e.target.value)} aria-label="Default select example">
       <option value="Snack">Snack</option>
       <option value="Lunch">Lunch</option>
@@ -94,13 +93,13 @@ function LogPage({user}) {
     
     <Col> 
       <Form.Group controlId="Calories">
-        <Form.Label>Calories</Form.Label>
+        <Form.Label style={{color: 'white', frontSize:'50px', fontWeight: '700'}}>Calories</Form.Label>
         <Form.Control  onChange={(e) => setCalories(e.target.value)} type="Calories" placeholder="100" />
       </Form.Group>
       </Col>
       
        <Form.Group controlId="date">
-        <Form.Label>Date</Form.Label>
+        <Form.Label style={{color: 'white', frontSize:'50px', fontWeight: '700'}}>Date</Form.Label>
         <Form.Control onChange={(e) => setDate(e.target.value)} type="Date" placeholder="MM/DD/YYYY" />
       </Form.Group>
       
@@ -116,6 +115,7 @@ function LogPage({user}) {
     </StyledForm>
    
         </div>
+        </StyledImgWrapper>
         
         </>
         

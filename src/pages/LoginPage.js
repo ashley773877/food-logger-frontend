@@ -3,14 +3,35 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import SignUpForm from '../components/SignUp';
 import Button from 'react-bootstrap/Button';
-
+import backgroundImg from '../images/LogPage.jpeg'
+import styled from "styled-components";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 
+
 // import LogOutButton from '../components/LogOutButton';
 
+const StyledForm = styled.div` 
+  max-width: 300%;
+  color: white;
+  margin: auto; 
+  border: 5px solid #415846;
+  padding: 15px; 
+  }
+`;
 
+const StyledImgWrapper = styled.div`
+  background-image: url(${backgroundImg}); 
+  background-size: cover;
+  background-position:
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+`;
 
 
 
@@ -68,27 +89,33 @@ function LoginPage({setUser}) {
       
   };
 return (
+      <> 
+       <StyledImgWrapper>
+      
       <main>
-     
+      <StyledForm> 
         {showSignIn ? (
           <div>
-            <h1> Sign In</h1>
+           
+            <h1 style={{color: 'white', frontSize:'50px', fontWeight: '700'}}> Sign In</h1>
+           
             <Form onSubmit={handleSignIn}>
+            <Row> 
               <Form.Group className="mb-3" controlId="formGroupEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label style={{color: 'white', frontSize:'50px', fontWeight: '700'}}>Email address</Form.Label>
                 <Form.Control type="email" placeholder="email" ref={emailInputRef} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formGroupPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label style={{color: 'white', frontSize:'50px', fontWeight: '700'}}>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" ref={passwordInputRef} />
               </Form.Group>
              {/* <button type="submit">Sign In</button> */}
              <Form.Group as={Row} className="mb-3">
         <Col sm={{ span: 10, offset: 2 }}>
-          <Button  type="submit" style={{textAlign:"center"}}>Sign in</Button>
+          <Button variant="success" type="submit" style={{textAlign:""}}>Sign in</Button>
         </Col>
       </Form.Group>
-
+      </Row> 
             </Form>
             <span>
               Don't have an account?{" "}
@@ -113,11 +140,13 @@ return (
             </span>
             
             {signInError && <div style={{color: 'red'}}>{signInError}</div>
-}
+}         
           </div>
         )}
-        
+        </StyledForm>
       </main>
+      </StyledImgWrapper>
+      </>
     );
   
   }

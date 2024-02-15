@@ -13,7 +13,17 @@ const StyledNavbar = styled(Navbar)`
   position: relative;
 `;
 
+const StyledNavLink = styled(Nav.Link)`
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin-right: 10px;
+  text-decoration: none;
 
+  &:hover {
+    color: grey; 
+  }
+`;
 
 
 
@@ -24,16 +34,24 @@ function Navigation() {
     <StyledNavbar>
       <Container >
         <StyledNavbar>
-        <Navbar.Brand href="/" style={{fontVariant: 'small-caps', fontWeight:'700', color:'white', fontStretch: 'ultra-expanded'}}
-        >EverDiet</Navbar.Brand>
+        <StyledNavLink href="/" style={{fontVariant: 'small-caps', fontWeight:'700', color:'white', fontStretch: 'ultra-expanded'}}
+        >EverDiet</StyledNavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/login" style={{fontFamily:'lato sans serif',fontWeight:'900', fontStyle: 'italic'}}>Login</Nav.Link>
-            <Nav.Link as={Link} to="/History">History</Nav.Link>
-            <Nav.Link as={Link} to="Logs">Logs</Nav.Link>
-         
+          <StyledNavLink as={Link} to="/login">
+                    Login
+                  </StyledNavLink>
+                 <StyledNavLink as={Link} to="/History">
+                    History
+                  </StyledNavLink>
+                  <StyledNavLink as={Link} to="/Logs">
+                    Logs
+                  </StyledNavLink>
+       
+           
           <LogOutButton />
+        
            
           </Nav>
         </Navbar.Collapse>

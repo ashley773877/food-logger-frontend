@@ -2,6 +2,12 @@
 import axios from 'axios'
 
 
+
+
+
+
+
+
 function LogOutButton() {
    
     const handleLogout = async (e) => {
@@ -28,9 +34,12 @@ function LogOutButton() {
     
 
 return (
+    
+    
     <div>
-       
-        <Button variant="outline-log Out" onClick={handleLogout}>Sign Out</Button>
+   
+        <Button style={{color: 'white', frontSize:'50px', fontWeight: '700'}} variant="outline-log Out" onClick={handleLogout}>Sign Out</Button>
+     
     </div>
 )
 
