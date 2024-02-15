@@ -1,5 +1,5 @@
 import { Form, FormGroup, Button, Row, Alert, Col } from 'react-bootstrap';
-import {  useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
 import backgroundImg from '../images/LogPage.jpeg'
@@ -36,9 +36,10 @@ function LogPage({user}) {
   const [timeOfDay, setTimeOfDay] = useState('Breakfeast')
   const [calories, setCalories] = useState('')
   const [date, setDate] = useState('')
-  const [showAlert, setShowAlert] = useState(user? null: true); 
-  const [successAlert, setSuccessAlert] = useState(false); // remove if not work
+  const [showAlert, setShowAlert] =useState(user? null: true); 
+  const [successAlert, setSuccessAlert] = useState(false);
   
+
   const handleLogSubmission = async (e) => {
     e.preventDefault();
     
@@ -55,7 +56,7 @@ function LogPage({user}) {
       setTimeOfDay('');
       setCalories('');
       setDate('');
-      setSuccessAlert(true); // remove this if it does not work 
+     setSuccessAlert(true); 
     
     } catch (error) {
       console.error("Food log submission failed:", error.message);
@@ -67,7 +68,8 @@ function LogPage({user}) {
        <StyledImgWrapper>
        <div>
          <h2 style={{color: 'white', fontSize:'45px'}}> Log your Meals!</h2>
-          {showAlert && !user &&(
+          {showAlert  && !user &&( 
+          
           <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Please sign in or sign up to submit a food log.
           </Alert>

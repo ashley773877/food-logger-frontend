@@ -35,14 +35,23 @@ function HistoryPage({user}) {
   const [date, setDate] = useState('');
   const [foodLogs, setFoodLogs] = useState([]); 
   
-  useEffect(() => { // remove lines 38-44 if does not work
+  // useEffect(() => { // come back to this if sign up doesnt work 
  
-    if (!user) {
+  //   if (!user) {
 
+  //     setShowAlert(true);
+  //   }
+  // }, [user]);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('foodLogUser'));
+  
+    if (!storedUser) {
       setShowAlert(true);
+    } else {
+      setShowAlert(false);
     }
-  }, [user]);
-
+  }, []);
 
   const handleDateSubmit = async (e) => {
     e.preventDefault();
