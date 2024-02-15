@@ -1,5 +1,5 @@
-import React, {  useState } from 'react';
-import { Form, Button, Table, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState} from 'react';
+import { Form, Button, Table, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios'
 import backgroundImg from '../images/LogPage.jpeg'
 import styled from 'styled-components'
@@ -31,14 +31,19 @@ const StyledImgWrapper = styled.div`
 
 
 function HistoryPage({user}) { 
-  // const [showAlert, setShowAlert] = useState(false); // just added
+  const [showAlert, setShowAlert] = useState(false); // remove this if it does not work
   const [date, setDate] = useState('');
   const [foodLogs, setFoodLogs] = useState([]); 
-  // const[meal, setMeal] = useState(''); // could be null
-  // const [timeOfDay, setTimeOfDay] = useState('')
-  // const [calories, setCalories] = useState('')
-
   
+  useEffect(() => { // remove lines 38-44 if does not work
+ 
+    if (!user) {
+
+      setShowAlert(true);
+    }
+  }, [user]);
+
+
   const handleDateSubmit = async (e) => {
     e.preventDefault();
     console.log(date);
@@ -49,28 +54,22 @@ function HistoryPage({user}) {
      })
       setFoodLogs(res.data);
       e.target.reset()
-      // e.target.reset() // might have to remove
     } catch (error) {
       console.log("error fetching logs", error.message)
     }
   }; 
   
-  //   await signIn({});
-    //   console.log('user after signIn' ,user)
-    // } catch (error) {
-    //   console.error('Sign in error:', error);
-    // return;
   return (
     <> 
        <StyledImgWrapper> 
    <div> 
-      {/* <h2> History</h2>
-    {/* might have to comment alert out */}
-       {/* {showAlert && ( */}
-  {/* // <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
-  //   Please sign in to view history.
-  // </Alert> */}
-{/* )}   */}  
+      <h2> History</h2>
+    
+       {showAlert && ( 
+    <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
+  Please sign in to view history.
+   </Alert>
+ )  }  
 <h2 style={{color: 'white', frontSize:'60px', fontWeight: '700'}}> History</h2>
 <div> 
 <StyledForm> 
