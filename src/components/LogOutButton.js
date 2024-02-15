@@ -1,11 +1,10 @@
  import { Button } from 'react-bootstrap'
 import axios from 'axios'
-import { useAuth } from '../context/AuthContext';
+
 
 function LogOutButton() {
-    const{signOut}= useAuth();
+   
     const handleLogout = async (e) => {
-      // const{signOut}= useAuth();
         e.preventDefault()
          localStorage.clear('foodloggerUser');
         try {
@@ -17,7 +16,7 @@ function LogOutButton() {
       
            
             localStorage.removeItem('foodLogUser');
-           signOut()
+           
            
             window.location.href = '/';
           } catch (error) {

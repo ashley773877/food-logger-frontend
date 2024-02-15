@@ -23,7 +23,7 @@ function HistoryPage() {
     console.log(date);
 
     try {
-    const res = await axios.post("http://localhost:4000/api/foodlogs/by-date" {
+    const res = await axios.post("http://localhost:4000/api/foodlogs/by-date" ,{
         date: date,
      })
       setFoodLogs(res.data);
