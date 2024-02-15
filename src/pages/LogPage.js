@@ -36,7 +36,7 @@ function LogPage({user}) {
   const [timeOfDay, setTimeOfDay] = useState('Breakfeast')
   const [calories, setCalories] = useState('')
   const [date, setDate] = useState('')
-  const [showAlert, setShowAlert] = useState(null); // just added
+  const [showAlert, setShowAlert] = useState(user? null: true); // remove if does not work
   
   
   const handleLogSubmission = async (e) => {
@@ -65,7 +65,7 @@ function LogPage({user}) {
        <StyledImgWrapper>
        <div>
          <h2 style={{color: 'white', fontSize:'45px'}}> Log your Meals!</h2>
-          {showAlert && (
+          {showAlert && !user &&(
           <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Please sign in to submit a food log.
           </Alert>
