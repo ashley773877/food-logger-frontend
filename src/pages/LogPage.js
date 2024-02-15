@@ -4,7 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import backgroundImg from '../images/LogPage.jpeg'
 
-import {  useAuth } from '../context/AuthContext';
+
 
 
 
@@ -31,7 +31,7 @@ const StyledForm = styled.div`
 
 
 function LogPage({user}) {
-  const { isAuthenticated } = useAuth(); 
+   
  
   const[meal, setMeal] = useState(''); 
   const [timeOfDay, setTimeOfDay] = useState('Breakfeast')
