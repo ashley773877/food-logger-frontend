@@ -36,8 +36,8 @@ function LogPage({user}) {
   const [timeOfDay, setTimeOfDay] = useState('Breakfeast')
   const [calories, setCalories] = useState('')
   const [date, setDate] = useState('')
-  const [showAlert, setShowAlert] = useState(user? null: true); // remove if does not work
-  
+  const [showAlert, setShowAlert] = useState(user? null: true); 
+  const [successAlert, setSuccessAlert] = useState(false); // remove if not work
   
   const handleLogSubmission = async (e) => {
     e.preventDefault();
@@ -55,6 +55,7 @@ function LogPage({user}) {
       setTimeOfDay('');
       setCalories('');
       setDate('');
+      setSuccessAlert(true); // remove this if it does not work 
     } catch (error) {
       console.error("Food log submission failed:", error.message);
     }
@@ -70,6 +71,11 @@ function LogPage({user}) {
             Please sign in to submit a food log.
           </Alert>
         )}
+        {successAlert && (
+            <Alert variant="success" onClose={() => setSuccessAlert(false)} dismissible>
+              Your meal was logged!
+            </Alert>
+          )}
         
      <StyledForm> 
          <Form onSubmit={handleLogSubmission}>
