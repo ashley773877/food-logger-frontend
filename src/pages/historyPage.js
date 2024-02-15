@@ -1,74 +1,48 @@
 import React, {  useState } from 'react';
-import { Form, Button, Table, Alert } from 'react-bootstrap';
+import { Form, Button, Table, Alert, Row, FormControl, FormGroup } from 'react-bootstrap';
 import axios from 'axios'
 
-import { Form, FormGroup, FormControl, Button, Row, } from 'react-bootstrap';
 
 
 
 
 
 
-function HistoryPage({user}) {
-  console.log('user in historyPage:', user)
+
+function HistoryPage() {
+ 
  
   
   const [showAlert, setShowAlert] = useState(false); // just added
   const [date, setDate] = useState('');
   const [foodLogs, setFoodLogs] = useState([]); 
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      setShowAlert(true);
-    }
-  }, [isAuthenticated]);
   
   const handleDateSubmit = async (e) => {
     e.preventDefault();
-    console.log('User in handleDateSubmit:', isAuthenticated ? 'Authenticated': 'not authenticated');
-  //  console.log(date);
+    console.log(date);
 
-   if (!isAuthenticated){
     try {
-      await signIn({});
-      console.log('user after signIn' ,user)
-    } catch (error) {
-      console.error('Sign in error:', error);
-    return;
-    }
-  }
-      
-    //     console.error('User is still not available after signing in.');
-    //     return;
-    //   }
-    //   user = signedInUser
-    // } catch (error) {
-    //   console.error('Sign in error:', error);
-    //   return;
-  //   }
-  // }
-    try{ 
-      if (!user) {
-        console.error('User is null.');
-      return;
-      }
-      const res = await axios.post(`http://localhost:4000/api/foodlogs/by-date/${user._id}`, {
+    const res = await axios.post("http://localhost:4000/api/foodlogs/by-date" {
         date: date,
-     
-      })
+     })
       setFoodLogs(res.data);
-      e.target.reset()
+      e.target.reset() // might have to remove
     } catch (error) {
       console.log("error fetching logs", error.message)
     }
   }; 
   
-  
+  //   await signIn({});
+    //   console.log('user after signIn' ,user)
+    // } catch (error) {
+    //   console.error('Sign in error:', error);
+    // return;
   return (
     
    <div> 
       <h2> History</h2>
-    
+    {/* might have to comment alert out */}
        {showAlert && (
   <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
     Please sign in to view history.
