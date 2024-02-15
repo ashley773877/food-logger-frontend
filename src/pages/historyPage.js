@@ -30,7 +30,7 @@ const StyledImgWrapper = styled.div`
 
 
 
-function HistoryPage() { 
+function HistoryPage({user}) { 
   // const [showAlert, setShowAlert] = useState(false); // just added
   const [date, setDate] = useState('');
   const [foodLogs, setFoodLogs] = useState([]); 
@@ -44,10 +44,11 @@ function HistoryPage() {
     console.log(date);
 
     try {
-    const res = await axios.post("http://localhost:4000/api/foodlogs/by-date" ,{
+    const res = await axios.post(`http://localhost:4000/api/foodlogs/by-date/${user._id}` ,{
       date: date,
      })
       setFoodLogs(res.data);
+      e.target.reset()
       // e.target.reset() // might have to remove
     } catch (error) {
       console.log("error fetching logs", error.message)

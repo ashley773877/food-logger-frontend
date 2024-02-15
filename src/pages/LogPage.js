@@ -6,11 +6,11 @@ import backgroundImg from '../images/LogPage.jpeg'
 
 
 const StyledForm = styled.div` 
-  max-width: 300%;
+  max-width: 50%;
   color: white;
   margin: auto; 
   border: 5px solid #415846;
-  padding: 15px; 
+  padding: 10px; 
   }
 `;
 
