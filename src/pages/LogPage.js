@@ -56,6 +56,7 @@ function LogPage({user}) {
       setCalories('');
       setDate('');
       setSuccessAlert(true); // remove this if it does not work 
+    
     } catch (error) {
       console.error("Food log submission failed:", error.message);
     }
@@ -68,7 +69,7 @@ function LogPage({user}) {
          <h2 style={{color: 'white', fontSize:'45px'}}> Log your Meals!</h2>
           {showAlert && !user &&(
           <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
-            Please sign in to submit a food log.
+            Please sign in or sign up to submit a food log.
           </Alert>
         )}
         {successAlert && (

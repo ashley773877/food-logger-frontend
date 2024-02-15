@@ -67,7 +67,7 @@ function HistoryPage({user}) {
     
        {showAlert && ( 
     <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
-  Please sign in to view history.
+  Please sign in or sign up to view history.
    </Alert>
  )  }  
 <h2 style={{color: 'white', frontSize:'60px', fontWeight: '700'}}> History</h2>
