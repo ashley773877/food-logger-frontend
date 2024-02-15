@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
-// import { AuthProvider } from "../context/AuthContext";
+
 // import LogOutButton from '../components/LogOutButton';
 
 
@@ -49,27 +49,24 @@ function LoginPage({setUser}) {
         setSignInError("Password is required");
         return;
       }
-     axios
-    .post("http://localhost:4000/api/users/signin", { //remove this and pass email and opassword
-      email: emailInputRef.current.value,
-      password: passwordInputRef.current.value,
-    })
-    .then((response) => {
-      console.log("sign in successfull");
-      localStorage.setItem('foodLogUser', JSON.stringify(response.date))
-      setUser(response.data.user);
-      navigate('/')
-    })
-    .catch((error) => {
-     
-      console.error("Sign in error:", error);
-      const errorMessage = error.response?.data?.message || "Password must be between 6-50 characters";
-      setSignInError(errorMessage);
-      setShowAlert(false);
-
-    });
-    
-};
+      axios
+      .post("http://localhost:4000/api/users/signin", {
+        email: emailInputRef.current.value,
+        password: passwordInputRef.current.value,
+      })
+      .then((response) => {
+        console.log("Sign in successful:", response.data);
+        setUser(response.data.user)
+        navigate("/");
+      })
+      .catch((error) => {
+  
+        console.error("Sign in error:", error);
+        const errorMessage = error.response?.data?.message || "Password must be between 6-50 characters";
+        setSignInError(errorMessage);
+      });
+      
+  };
 return (
       <main>
      
