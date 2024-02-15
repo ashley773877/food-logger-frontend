@@ -1,5 +1,5 @@
 import { Form, FormGroup, Button, Row, Alert, Col } from 'react-bootstrap';
-import { useState } from 'react';
+import {  useState } from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
 import backgroundImg from '../images/LogPage.jpeg'
@@ -36,14 +36,16 @@ function LogPage({user}) {
   const [timeOfDay, setTimeOfDay] = useState('Breakfeast')
   const [calories, setCalories] = useState('')
   const [date, setDate] = useState('')
-  const [showAlert, setShowAlert] =useState(user? null: true); 
+  const [showAlert, setShowAlert] = useState(user? null: true);  
   const [successAlert, setSuccessAlert] = useState(false);
   
 
+
   const handleLogSubmission = async (e) => {
     e.preventDefault();
+  
     
-    try {
+    try { 
       const response = await axios.post('http://localhost:4000/api/foodlogs', {
         user_id: user._id,
         meal: meal,
@@ -57,11 +59,13 @@ function LogPage({user}) {
       setCalories('');
       setDate('');
      setSuccessAlert(true); 
+     setShowAlert(false);
     
     } catch (error) {
       console.error("Food log submission failed:", error.message);
     }
   };
+ 
   return (
        
        <> 

@@ -17,7 +17,7 @@ import axios from 'axios'
 
 
 
-function SignUpForm({setUser}) {
+function SignUpForm({setUser, onSignUpSuccess}) { // remove onsign if no work
   const navigate = useNavigate();
    const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
@@ -34,7 +34,7 @@ function SignUpForm({setUser}) {
           console.log("Signup successful:", response.data);
           localStorage.setItem('foodLogUser', JSON.stringify(response.data))
           console.log("Signup successful:", response.data);
-      // setUser(response.data.user.user)
+   
       navigate('/')
         } catch (error) {
           console.error("Signup failed:", error.message);
