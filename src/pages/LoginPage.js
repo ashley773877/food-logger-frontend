@@ -7,8 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
-import { AuthProvider } from "../context/AuthContext";
-import LogOutButton from '../components/LogOutButton';
+// import { AuthProvider } from "../context/AuthContext";
+// import LogOutButton from '../components/LogOutButton';
 import { useAuth } from "../context/AuthContext";
 
 
@@ -25,13 +25,13 @@ function LoginPage({setUser}) {
     const passwordInputRef = useRef(null);
     const [showSignIn, setShowSignIn] = useState(true);
     const [signInError, setSignInError] = useState(null);
-    const [showAlert, setShowAlert] = useState(false);
-  const {signIn}=useAuth();
+    // const [showAlert, setShowAlert] = useState(false);
+ 
     // const [email, setEmail] = useState(null)
     // const [password, setPassword] = useState(null);
 
   
-    const handleSignIn =  (e) => {
+    const handleSignIn = async (e) => {
       e.preventDefault();
 
         
@@ -40,7 +40,7 @@ function LoginPage({setUser}) {
 
       if (emailInputRef.current.value === "") {
         emailInputRef.current.focus();
-        signInError("Sign-in failed")
+        setSignInError("Sign-in failed")
        
         return;
       }
@@ -49,27 +49,25 @@ function LoginPage({setUser}) {
         setSignInError("Password is required");
         return;
       }
-    signIn({ email: emailInputRef.current.value,
-      password: passwordInputRef.current.value,})
-    // axios
-    // .post("http://localhost:4000/api/users/signin", { //remove this and pass email and opassword
-    //   email: emailInputRef.current.value,
-    //   password: passwordInputRef.current.value,
-    // })
-    // .then((response) => {
-    //   console.log("isAuthenticated:");
-    //   localStorage.setItem('foodLogUser', JSON.stringify(response.date))
-    //   setUser(response.data.user);
-    //   navigate('/')
-    // })
-    // .catch((error) => {
+     axios
+    .post("http://localhost:4000/api/users/signin", { //remove this and pass email and opassword
+      email: emailInputRef.current.value,
+      password: passwordInputRef.current.value,
+    })
+    .then((response) => {
+      console.log("sign in successfull");
+      localStorage.setItem('foodLogUser', JSON.stringify(response.date))
+      setUser(response.data.user);
+      navigate('/')
+    })
+    .catch((error) => {
      
-    //   console.error("Sign in error:", error);
-    //   const errorMessage = error.response?.data?.message || "Password must be between 6-50 characters";
-    //   setSignInError(errorMessage);
-    //   setShowAlert(false);
+      console.error("Sign in error:", error);
+      const errorMessage = error.response?.data?.message || "Password must be between 6-50 characters";
+      setSignInError(errorMessage);
+      setShowAlert(false);
 
-    // });
+    });
     
 };
 return (

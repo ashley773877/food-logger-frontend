@@ -1,28 +1,57 @@
-import React, { useState, useContext } from 'react';
+import React, {  useState } from 'react';
 import { Form, Button, Table, Alert } from 'react-bootstrap';
 import axios from 'axios'
-import {  useAuth} from '../context/AuthContext'
+
+import { Form, FormGroup, FormControl, Button, Row, } from 'react-bootstrap';
+
+
 
 
 
 
 function HistoryPage({user}) {
+  console.log('user in historyPage:', user)
  
-  const { isAuthenticated } = useAuth(); // just added
+  
   const [showAlert, setShowAlert] = useState(false); // just added
   const [date, setDate] = useState('');
   const [foodLogs, setFoodLogs] = useState([]); 
- console.log(user)
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setShowAlert(true);
+    }
+  }, [isAuthenticated]);
+  
   const handleDateSubmit = async (e) => {
     e.preventDefault();
-   console.log(date);
+    console.log('User in handleDateSubmit:', isAuthenticated ? 'Authenticated': 'not authenticated');
+  //  console.log(date);
 
-   if (!isAuthenticated) {
-    setShowAlert(true);
+   if (!isAuthenticated){
+    try {
+      await signIn({});
+      console.log('user after signIn' ,user)
+    } catch (error) {
+      console.error('Sign in error:', error);
     return;
+    }
   }
-    try{
+      
+    //     console.error('User is still not available after signing in.');
+    //     return;
+    //   }
+    //   user = signedInUser
+    // } catch (error) {
+    //   console.error('Sign in error:', error);
+    //   return;
+  //   }
+  // }
+    try{ 
+      if (!user) {
+        console.error('User is null.');
+      return;
+      }
       const res = await axios.post(`http://localhost:4000/api/foodlogs/by-date/${user._id}`, {
         date: date,
      
@@ -85,7 +114,7 @@ function HistoryPage({user}) {
           ))}
         </tbody>
       </Table> <div/>
-  <h2> please log in</h2>  </div> 
+ </div> 
     
     </div> 
   );

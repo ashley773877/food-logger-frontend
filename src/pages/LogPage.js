@@ -1,5 +1,5 @@
 import { Form, FormGroup, Button, Row, Alert, Col } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
 import backgroundImg from '../images/LogPage.jpeg'
@@ -39,20 +39,12 @@ function LogPage({user}) {
   const [date, setDate] = useState('')
   const [showAlert, setShowAlert] = useState(null); // just added
   
-  useEffect(() => {
-    console.log('isAuthenticated: changed', isAuthenticated);
-  }, [isAuthenticated]); 
+  
   const handleLogSubmission = async (e) => {
     e.preventDefault();
-
-    if(!isAuthenticated) {
-      console.log('not authenticated. alert will be shown');
-      setShowAlert(true);
-      return;
-    }
     
     try {
-      const response = await axios.post("http://localhost:4000/api/foodlogs", {
+      const response = await axios.post('http://localhost:4000/api/foodlogs', {
         user_id: user._id,
         meal: meal,
         timeOfDay: timeOfDay,
